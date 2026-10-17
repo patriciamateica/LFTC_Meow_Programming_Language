@@ -1,0 +1,64 @@
+- lexical
+<letter>      ::= "a" | ... | "z" | "A" | ... | "Z"
+<digit>       ::= "0" | ... | "9"
+<nonzero>     ::= "1" | ... | "9"
+<identifier>  ::= <letter> { <letter> | <digit> | "_" }
+<number> ::= "0" | <nonzero> { <digit> }
+<string>   ::= <dq> { <str_char> } <dq>
+<str_char> ::= <any char except <dq> and "\n">
+<keyword>     ::= "friend" | "treats" | "adopt" | "paw" | 
+		  "cuddle" | "scratch" | "purr" | "baby" | 
+		  "zoomies" | "meow"| "sniff" | "hiss" | 
+		  "biscuits"| "up" | "down" | "made" | "and" | "or" | "chunky" | "not"
+
+
+<program>     ::= <statement> { <statement> }
+<statement>   ::= <list_decl> | <num_decl> | <assign> | <input> | <add>
+                | <map> | <filter> | <sort> | <unique> | <join>
+                | <output> | <if> | <for>
+
+
+<whitespace> ::= " " | "\t" | "\r" | "\n"
+<comment>    ::= "//" { <any char except "\n"> }
+
+(the reserved words, operators and separators are the tokens listed in tokens.in)
+(keywords are lowercase and case-sensitive: "Friend" is an <identifier>)
+(an <identifier> must not be a <keyword>; the longest match wins, so "friends" is an identifier)
+(tokens use longest match: "==", "=>", "<=", ">=", "!=" are single tokens, and "//" starts a comment, not two "/")
+(whitespace and comments are ignored between tokens)
+(numbers have no sign: a negative value is written 0 - 5)
+
+- syntactic
+<program>     ::= <statement> { <statement> }
+<statement>   ::= <list_decl> | <num_decl> | <assign> | <input> | <add>
+                | <map> | <filter> | <sort> | <unique> | <join>
+                | <output> | <if> | <for>
+...the rest as you have it...
+<list_decl>   ::= "friend" <identifier> "=" <list_literal> ";"
+<num_decl>    ::= "treats" <identifier> [ "=" <arith> ] ";"
+<assign>      ::= <ref> "=" <arith> ";"
+<input>       ::= "adopt" <ref> ";"
+<add>         ::= "paw" <identifier> <arith> ";"
+<map>         ::= "cuddle" <identifier> <identifier> "=>" <arith> ";"
+<filter>      ::= "scratch" <identifier> <identifier> "=>" <cond> ";"
+<sort>        ::= "purr" <identifier> <order> ";"
+<unique>      ::= "baby" <identifier> ";"
+<join>        ::= "zoomies" <identifier> <string> ";"
+<output>      ::= "meow" <out_item> { "," <out_item> } ";"
+<if>          ::= "sniff" <cond> <block> [ "hiss" <block> ]
+<for>         ::= "biscuits" <identifier> "made" <identifier> <block>
+
+<block>       ::= "{" <statement> { <statement> } "}"
+<out_item>    ::= <string> | <arith> 
+<order>       ::= "up" | "down"
+<list_literal>::= "[" [ <arith> { "," <arith> } ] "]"
+
+<cond>       ::= <and_cond> { "or" <and_cond> }
+<and_cond>   ::= <not_cond> { "and" <not_cond> }
+<not_cond>   ::= "not" <not_cond> | <comparison>
+<comparison> ::= <arith> <comp_op> <arith>
+<comp_op>    ::= "==" | "!=" | "<" | "<=" | ">" | ">="
+<arith>       ::= <term> { ( "+" | "-" ) <term> }
+<term>        ::= <factor> { ( "*" | "/" | "%" ) <factor> }
+<factor>      ::= <number> | <ref> | "chunky" "(" <identifier> ")" | "(" <arith> ")"
+<ref>         ::= <identifier> [ "[" <arith> "]" ]
