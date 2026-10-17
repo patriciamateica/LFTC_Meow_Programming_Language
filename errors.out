@@ -1,0 +1,5 @@
+Lexical error at line 1: identifier cannot start with a digit: '2cats'
+Lexical error at line 2: number cannot have leading zeros: '007'
+Lexical error at line 3: unterminated string: '"this string never ends;'
+Lexical error at line 4: invalid character: '@'
+4 lexical error(s).

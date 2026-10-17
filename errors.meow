@@ -1,0 +1,6 @@
+treats 2cats = 5;
+treats box = 007;
+meow "this string never ends;
+treats cost = 4 @ 2;
+// this comment is ignored
+treats ok = 0;

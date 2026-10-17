@@ -1,0 +1,30 @@
+friend eaten = [0, 0, 0];
+treats limit = 4;
+treats greedy = 0;
+
+meow "Treats eaten today by Goofy and Simba:";
+adopt eaten[0];
+adopt eaten[1];
+eaten[2] = eaten[0] + 1;
+
+paw eaten 2;
+baby eaten;
+cuddle eaten c => c + 1;
+
+biscuits e made eaten {
+    sniff e > limit {
+        greedy = greedy + 1;
+    }
+}
+
+sniff greedy > 0 {
+    meow "Less treats tomorrow because your greed sickens me! Greedy cats: ", greedy;
+} hiss {
+    meow "Everybody behaved, they will get more treats tomorrow <3. Purr...";
+}
+
+purr eaten up;
+zoomies eaten ", ";
+
+scratch eaten x => x > limit;
+meow "Cats still over the limit: ", chunky(eaten);

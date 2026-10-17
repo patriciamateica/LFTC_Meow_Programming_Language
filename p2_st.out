@@ -1,0 +1,16 @@
+position   type         symbol
+0:0        string       "Everybody behaved, they will get more treats tomorrow <3. Purr..."
+3:0        string       ", "
+4:0        string       "Less treats tomorrow because your greed sickens me! Greedy cats: "
+4:1        string       "Cats still over the limit: "
+6:0        identifier   c
+8:0        identifier   e
+13:0       string       "Treats eaten today by Goofy and Simba:"
+17:0       identifier   eaten
+17:1       number       0
+18:0       number       1
+19:0       number       2
+21:0       number       4
+23:0       identifier   limit
+27:0       identifier   x
+28:0       identifier   greedy

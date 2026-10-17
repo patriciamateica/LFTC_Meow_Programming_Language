@@ -1,0 +1,23 @@
+position   type         symbol
+3:0        string       ", "
+3:1        string       "Cats younger than 4 months that need to go to the vet: "
+4:0        identifier   a
+5:0        string       " ate a treat because she is not overweight."
+13:0       string       "The number of treats left is "
+17:0       number       0
+17:1       string       "You must go and buy more treats."
+18:0       number       1
+18:1       string       "Purr... cat with weight "
+19:0       number       2
+19:1       string       "Cat weights, from chunkiest to lightest:"
+20:0       number       3
+21:0       number       4
+21:1       string       "Your cats are angry that you did not give them treats...but the vet said they should be on a diet...maybe one treat would not hurt. But how is the box empty already??"
+22:0       identifier   ages
+22:1       number       5
+23:0       identifier   weight
+23:1       number       6
+25:0       number       8
+26:0       identifier   w
+27:0       identifier   box
+27:1       string       "How many treats do you have for your cats? "

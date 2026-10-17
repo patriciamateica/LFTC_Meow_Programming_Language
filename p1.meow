@@ -1,0 +1,32 @@
+friend ages = [2, 3, 3, 4];
+friend weight = [2, 2, 4, 6];
+treats box;
+
+meow "How many treats do you have for your cats? ";
+adopt box;
+
+paw ages 5;
+paw weight 8;
+baby weight;
+purr weight down;
+
+meow "Cat weights, from chunkiest to lightest:";
+zoomies weight ", ";
+
+biscuits w made weight {
+    sniff w < 6 and box > 0 {
+        box = box - 1;
+        meow "Purr... cat with weight ", w, " ate a treat because she is not overweight.";
+        meow "The number of treats left is ", box;
+    } hiss {
+        meow "Your cats are angry that you did not give them treats...but the vet said they should be on a diet...maybe one treat would not hurt. But how is the box empty already??";
+    }
+}
+
+sniff box == 0 {
+    meow "You must go and buy more treats.";
+}
+
+cuddle ages a => a + 1;
+scratch ages a => a < 4;
+meow "Cats younger than 4 months that need to go to the vet: ", chunky(ages);

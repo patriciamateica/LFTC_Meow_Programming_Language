@@ -1,0 +1,21 @@
+code   token        ST position
+3      treats       -
+33     =            -
+1      const        22:0
+41     ;            -
+3      treats       -
+0      id           27:0
+33     =            -
+41     ;            -
+11     meow         -
+3      treats       -
+0      id           23:0
+33     =            -
+1      const        21:0
+1      const        19:0
+41     ;            -
+3      treats       -
+0      id           14:0
+33     =            -
+1      const        17:0
+41     ;            -

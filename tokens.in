@@ -1,0 +1,49 @@
+# Token list of the Meow language (one token per line)
+# --- reserved words ---
+friend
+treats
+adopt
+paw
+cuddle
+scratch
+purr
+baby
+zoomies
+meow
+sniff
+hiss
+biscuits
+made
+up
+down
+chunky
+and
+or
+not
+# --- operators ---
++
+-
+*
+/
+%
+==
+!=
+<
+<=
+>
+>=
+=
+=>
+# --- separators ---
+(
+)
+[
+]
+{
+}
+;
+,
+# --- classes without fixed text ---
+# identifier : letter { letter | digit | _ }
+# number     : 0 | nonzero { digit }
+# string     : " { any char except " and newline } "
