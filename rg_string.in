@@ -1,0 +1,12 @@
+# Regular grammar for string constants (right-linear)
+# PRINTABLE = ASCII characters from space (32) to ~ (126)
+# Q2 is final and has no outgoing transitions, so "Q1 -> " Q2" is
+# replaced by "Q1 -> "".
+name string
+nonterminals Q0 Q1
+terminals PRINTABLE
+start Q0
+productions
+Q0 -> " Q1
+Q1 -> [^"] Q1
+Q1 -> "

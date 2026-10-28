@@ -1,0 +1,5 @@
+Step 1: nonterminals = Q0 Q1, start symbol = Q0
+Step 2: delta(q0, [a-zA-Z]) = q1  =>  Q0 -> [a-zA-Z] Q1
+Step 3: q1 is final  =>  Q0 -> [a-zA-Z]
+Step 2: delta(q1, [a-zA-Z0-9_]) = q1  =>  Q1 -> [a-zA-Z0-9_] Q1
+Step 3: q1 is final  =>  Q1 -> [a-zA-Z0-9_]

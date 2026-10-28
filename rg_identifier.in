@@ -1,0 +1,11 @@
+# Regular grammar for identifiers (right-linear)
+# Nonterminals are the states written in uppercase: q0 -> Q0
+name identifier
+nonterminals Q0 Q1
+terminals [a-zA-Z] [0-9] _
+start Q0
+productions
+Q0 -> [a-zA-Z] Q1
+Q0 -> [a-zA-Z]
+Q1 -> [a-zA-Z0-9_] Q1
+Q1 -> [a-zA-Z0-9_]

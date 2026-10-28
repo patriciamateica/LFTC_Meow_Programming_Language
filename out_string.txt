@@ -1,0 +1,8 @@
+name string
+nonterminals Q0 Q1
+terminals PRINTABLE
+start Q0
+productions
+Q0 -> " Q1
+Q1 -> [^"] Q1
+Q1 -> "

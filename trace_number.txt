@@ -1,0 +1,9 @@
+Step 1: nonterminals = Q0 Q1 Q2, start symbol = Q0
+Step 2: delta(q0, 0) = q1  =>  Q0 -> 0 Q1
+Step 3: q1 is final  =>  Q0 -> 0
+Step 2: delta(q0, [1-9]) = q2  =>  Q0 -> [1-9] Q2
+Step 3: q2 is final  =>  Q0 -> [1-9]
+Step 2: delta(q2, [0-9]) = q2  =>  Q2 -> [0-9] Q2
+Step 3: q2 is final  =>  Q2 -> [0-9]
+Step 5: removed Q0 -> 0 Q1 (uses a nonterminal with no terminating derivation)
+Step 5: removed nonterminal Q1

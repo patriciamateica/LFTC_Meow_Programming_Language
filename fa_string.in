@@ -1,0 +1,12 @@
+# Finite automaton for string constants: " { any char except " } "
+# PRINTABLE = ASCII characters from space (32) to ~ (126)
+# [^"] = any PRINTABLE character except the double quote
+name string
+states q0 q1 q2
+alphabet PRINTABLE
+initial q0
+final q2
+transitions
+q0 " q1
+q1 [^"] q1
+q1 " q2

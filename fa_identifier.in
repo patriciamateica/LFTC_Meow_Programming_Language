@@ -1,0 +1,9 @@
+# Finite automaton for identifiers: letter { letter | digit | _ }
+name identifier
+states q0 q1
+alphabet [a-zA-Z] [0-9] _
+initial q0
+final q1
+transitions
+q0 [a-zA-Z] q1
+q1 [a-zA-Z0-9_] q1
