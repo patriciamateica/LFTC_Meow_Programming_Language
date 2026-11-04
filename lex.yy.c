@@ -373,8 +373,8 @@ static void yynoreturn yy_fatal_error ( const char* msg  );
 	(yy_hold_char) = *yy_cp; \
 	*yy_cp = '\0'; \
 	(yy_c_buf_p) = yy_cp;
-#define YY_NUM_RULES 11
-#define YY_END_OF_BUFFER 12
+#define YY_NUM_RULES 6
+#define YY_END_OF_BUFFER 7
 /* This struct is not used in this scanner,
    but its presence is necessary. */
 struct yy_trans_info
@@ -382,11 +382,10 @@ struct yy_trans_info
 	flex_int32_t yy_verify;
 	flex_int32_t yy_nxt;
 	};
-static const flex_int16_t yy_accept[28] =
+static const flex_int16_t yy_accept[18] =
     {   0,
-        0,    0,   12,   10,    1,    1,   10,    9,    6,    6,
-        4,    4,    6,    6,    3,    1,    6,    9,    5,    2,
-        8,    7,    4,    3,    2,    7,    0
+        0,    0,    7,    5,    1,    1,    5,    3,    4,    4,
+        4,    4,    1,    4,    2,    2,    0
     } ;
 
 static const YY_CHAR yy_ec[256] =
@@ -395,16 +394,16 @@ static const YY_CHAR yy_ec[256] =
         1,    1,    2,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    2,    4,    5,    1,    1,    6,    1,    1,    6,
-        6,    6,    6,    6,    6,    1,    7,    8,    9,    9,
-        9,    9,    9,    9,    9,    9,    9,    1,    6,   10,
-       11,   12,    1,    1,   13,   13,   13,   13,   13,   13,
-       13,   13,   13,   13,   13,   13,   13,   13,   13,   13,
-       13,   13,   13,   13,   13,   13,   13,   13,   13,   13,
-        6,    1,    6,    1,   14,    1,   13,   13,   13,   13,
+        6,    6,    6,    6,    6,    1,    7,    5,    5,    5,
+        5,    5,    5,    5,    5,    5,    5,    1,    6,    8,
+        9,   10,    1,    1,    5,    5,    5,    5,    5,    5,
+        5,    5,    5,    5,    5,    5,    5,    5,    5,    5,
+        5,    5,    5,    5,    5,    5,    5,    5,    5,    5,
+        6,    1,    6,    1,    1,    1,    5,    5,    5,    5,
 
-       13,   13,   13,   13,   13,   13,   13,   13,   13,   13,
-       13,   13,   13,   13,   13,   13,   13,   13,   13,   13,
-       13,   13,    6,    1,    6,    1,    1,    1,    1,    1,
+        5,    5,    5,    5,    5,    5,    5,    5,    5,    5,
+        5,    5,    5,    5,    5,    5,    5,    5,    5,    5,
+        5,    5,    6,    1,    6,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
@@ -421,50 +420,43 @@ static const YY_CHAR yy_ec[256] =
         1,    1,    1,    1,    1
     } ;
 
-static const YY_CHAR yy_meta[15] =
+static const YY_CHAR yy_meta[11] =
     {   0,
-        1,    1,    2,    1,    1,    1,    1,    1,    1,    1,
-        1,    1,    1,    1
+        1,    2,    3,    1,    1,    1,    1,    1,    1,    1
     } ;
 
-static const flex_int16_t yy_base[30] =
+static const flex_int16_t yy_base[20] =
     {   0,
-        0,    0,   44,   45,   13,   15,   32,   37,   45,   32,
-       11,   13,   27,   15,   20,   28,   45,   32,   45,    0,
-        0,   27,    0,    0,    0,    0,   45,   31,   22
+        0,    0,   20,   21,    0,    0,   10,   21,   21,   11,
+        8,    2,    0,   21,    0,    0,   21,   11,   14
     } ;
 
-static const flex_int16_t yy_def[30] =
+static const flex_int16_t yy_def[20] =
     {   0,
-       27,    1,   27,   27,   27,   27,   27,   28,   27,   27,
-       27,   11,   27,   27,   27,   27,   27,   28,   27,   29,
-       11,   27,   12,   15,   29,   22,    0,   27,   27
+       17,    1,   17,   17,   18,   18,   17,   17,   17,   17,
+       17,   17,   18,   17,   19,   19,    0,   17,   17
     } ;
 
-static const flex_int16_t yy_nxt[60] =
+static const flex_int16_t yy_nxt[32] =
     {   0,
-        4,    5,    6,    7,    8,    9,   10,   11,   12,   13,
-       14,   13,   15,    4,   16,   16,   16,   16,   21,   21,
-       23,   23,   25,   22,   22,   17,   17,   24,   24,   16,
-       16,   18,   24,   24,   26,   26,   19,   17,   20,   26,
-       26,   19,   17,   27,    3,   27,   27,   27,   27,   27,
-       27,   27,   27,   27,   27,   27,   27,   27,   27
+        4,    5,    6,    7,    8,    9,   10,   11,   12,   11,
+       14,   14,   13,   13,   16,   16,   14,   15,   14,   17,
+        3,   17,   17,   17,   17,   17,   17,   17,   17,   17,
+       17
     } ;
 
-static const flex_int16_t yy_chk[60] =
+static const flex_int16_t yy_chk[32] =
     {   0,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
-        1,    1,    1,    1,    5,    5,    6,    6,   11,   11,
-       12,   12,   29,   11,   11,   14,   14,   15,   15,   16,
-       16,   28,   15,   15,   22,   22,   18,   13,   10,   22,
-       22,    8,    7,    3,   27,   27,   27,   27,   27,   27,
-       27,   27,   27,   27,   27,   27,   27,   27,   27
+       12,   12,   18,   18,   19,   19,   11,   10,    7,    3,
+       17,   17,   17,   17,   17,   17,   17,   17,   17,   17,
+       17
     } ;
 
 /* Table of booleans, true if rule could match eol. */
-static const flex_int32_t yy_rule_can_match_eol[12] =
+static const flex_int32_t yy_rule_can_match_eol[7] =
     {   0,
-1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,     };
+1, 0, 0, 0, 0, 0,     };
 
 static yy_state_type yy_last_accepting_state;
 static char *yy_last_accepting_cpos;
@@ -481,111 +473,203 @@ int yy_flex_debug = 0;
 #define YY_RESTORE_YY_MORE_OFFSET
 char *yytext;
 #line 1 "lexer.l"
-#define YY_NO_INPUT 1
 #line 4 "lexer.l"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 #include "symtab.h"
 
-/* Token codes: 0 = identifier, 1 = constant,
- * every token read from tokens.in gets 2, 3, 4, ... in file order. */
+#define LEN        64
+#define MAX        128
 #define CODE_ID    0
 #define CODE_CONST 1
 
 /* ---------- Token list (read from tokens.in) ---------- */
-typedef struct {
-    char *text;
-    int code;
-} Token;
+typedef struct { char text[LEN]; int code; } Token;
 
-static Token *tokens = NULL;
-static int tok_len = 0, tok_cap = 0;
+static Token tok[MAX];
+static int ntok;
 
-/* ---------- Program Internal Form ---------- */
-typedef struct {
-    char *token;     /* token text, or "id" / "const" */
-    int code;
-    int bucket;      /* ST position, or -1 when the token has none */
-    int index;
-} PifEntry;
-
-static PifEntry *pif = NULL;
-static int pif_len = 0, pif_cap = 0;
-
-static SymTab st;
-static FILE *errf = NULL;
-static int error_count = 0;
-
-static char *dup_text(const char *s) {
-    char *p = malloc(strlen(s) + 1);
-    if (!p) { fprintf(stderr, "out of memory\n"); exit(1); }
-    strcpy(p, s);
-    return p;
-}
-
-/* Reads the token list: one token per line; blank lines and lines
- * starting with '#' are ignored. Returns the number of tokens, or -1. */
 static int load_tokens(const char *path) {
     FILE *f = fopen(path, "r");
-    if (!f) return -1;
-
+    if (!f) {
+        perror(path);
+        return -1;
+    }
     char line[256];
-    while (fgets(line, sizeof line, f)) {
+    while (fgets(line, sizeof line, f) && ntok < MAX) {
         size_t n = strlen(line);
-        while (n > 0 && (line[n-1] == '\n' || line[n-1] == '\r' ||
-                         line[n-1] == ' '  || line[n-1] == '\t'))
-            line[--n] = '\0';
+        while (n > 0 && isspace((unsigned char)line[n - 1])) line[--n] = '\0';
         char *p = line;
         while (*p == ' ' || *p == '\t') p++;
         if (*p == '\0' || *p == '#') continue;
-
-        if (tok_len == tok_cap) {
-            tok_cap = tok_cap ? tok_cap * 2 : 64;
-            tokens = realloc(tokens, tok_cap * sizeof(Token));
-            if (!tokens) { fprintf(stderr, "out of memory\n"); exit(1); }
-        }
-        tokens[tok_len].text = dup_text(p);
-        tokens[tok_len].code = tok_len + 2;
-        tok_len++;
+        strcpy(tok[ntok].text, p);
+        tok[ntok].code = ntok + 2;
+        ntok++;
     }
     fclose(f);
-    return tok_len;
+    return 0;
 }
 
-/* Returns the code of text if it is in the token list, otherwise -1. */
-static int token_code(const char *text) {
-    for (int i = 0; i < tok_len; i++)
-        if (strcmp(tokens[i].text, text) == 0)
-            return tokens[i].code;
+static int token_code(const char *s) {
+    for (int i = 0; i < ntok; i++)
+        if (strcmp(tok[i].text, s) == 0) return tok[i].code;
     return -1;
 }
+
+/* ---------- Finite automata (read from the fa_*.in files) ---------- */
+typedef struct { char from[LEN], sym[LEN], to[LEN]; } Trans;
+
+typedef struct {
+    Trans t[MAX];
+    int nt;
+    char finals[MAX][LEN];
+    int nf;
+    char initial[LEN];
+} FA;
+
+static FA fa_id, fa_num, fa_str;
+
+static int read_fa(const char *path, FA *fa) {
+    FILE *f = fopen(path, "r");
+    if (!f) {
+        perror(path);
+        return -1;
+    }
+    char line[256], *p;
+    int in_trans = 0;
+    while (fgets(line, sizeof line, f)) {
+        if (line[0] == '#' || line[0] == '\n') continue;
+        if (in_trans) {
+            if (fa->nt < MAX && sscanf(line, "%63s %63s %63s", fa->t[fa->nt].from,
+                                       fa->t[fa->nt].sym, fa->t[fa->nt].to) == 3)
+                fa->nt++;
+            continue;
+        }
+        p = strtok(line, " \t\r\n");
+        if (!p) continue;
+        if (strcmp(p, "initial") == 0) {
+            p = strtok(NULL, " \t\r\n");
+            if (p) strcpy(fa->initial, p);
+        } else if (strcmp(p, "final") == 0) {
+            while ((p = strtok(NULL, " \t\r\n")) && fa->nf < MAX)
+                strcpy(fa->finals[fa->nf++], p);
+        } else if (strcmp(p, "transitions") == 0) {
+            in_trans = 1;
+        }
+    }
+    fclose(f);
+    return 0;
+}
+
+static int symbol_matches(const char *sym, char c) {
+    if (strcmp(sym, "PRINTABLE") == 0)
+        return c >= 32 && c <= 126;
+    if (sym[0] == '[') {
+        const char *p = sym + 1;
+        int negate = 0, found = 0;
+        if (*p == '^') {
+            negate = 1;
+            p++;
+        }
+        while (*p && *p != ']') {
+            if (p[1] == '-' && p[2] && p[2] != ']') {
+                if (c >= p[0] && c <= p[2]) found = 1;
+                p += 3;
+            } else {
+                if (c == p[0]) found = 1;
+                p++;
+            }
+        }
+        return negate ? (!found && c >= 32 && c <= 126) : found;
+    }
+    return sym[0] == c && sym[1] == '\0';
+}
+
+static const char *next_state(const FA *fa, const char *state, char c) {
+    for (int i = 0; i < fa->nt; i++)
+        if (strcmp(fa->t[i].from, state) == 0 && symbol_matches(fa->t[i].sym, c))
+            return fa->t[i].to;
+    return NULL;
+}
+
+static int is_final(const FA *fa, const char *state) {
+    for (int i = 0; i < fa->nf; i++)
+        if (strcmp(fa->finals[i], state) == 0) return 1;
+    return 0;
+}
+
+/* ---------- Program Internal Form, symbol table, errors ---------- */
+typedef struct { char token[LEN]; int code, bucket, index; } PifEntry;
+
+static PifEntry *pif;
+static int pif_len, pif_cap;
+static SymTab st;
+static FILE *errf;
+static FILE *faf;
+static int error_count;
 
 static void pif_add(const char *token, int code, int bucket, int index) {
     if (pif_len == pif_cap) {
         pif_cap = pif_cap ? pif_cap * 2 : 128;
         pif = realloc(pif, pif_cap * sizeof(PifEntry));
-        if (!pif) { fprintf(stderr, "out of memory\n"); exit(1); }
+        if (!pif) {
+            fprintf(stderr, "out of memory\n");
+            exit(1);
+        }
     }
-    pif[pif_len].token = dup_text(token);
+    snprintf(pif[pif_len].token, LEN, "%s", token);
     pif[pif_len].code = code;
     pif[pif_len].bucket = bucket;
     pif[pif_len].index = index;
     pif_len++;
 }
 
-static void add_symbol(const char *kind, int code, StType type) {
-    StPos p = st_insert(&st, yytext, type);
+static void add_symbol(const char *kind, int code, StType type, const char *text) {
+    StPos p = st_insert(&st, text, type);
     pif_add(kind, code, p.bucket, p.index);
 }
 
-static void lex_error(const char *msg) {
+static void error_at(int line, const char *msg, const char *s, int n) {
     error_count++;
-    fprintf(errf, "Lexical error at line %d: %s '%s'\n", yylineno, msg, yytext);
-    fprintf(stderr, "Lexical error at line %d: %s '%s'\n", yylineno, msg, yytext);
+    fprintf(errf, "Lexical error at line %d: %s '%.*s'\n", line, msg, n, s);
+    fprintf(stderr, "Lexical error at line %d: %s '%.*s'\n", line, msg, n, s);
 }
-#line 588 "lex.yy.c"
-#line 589 "lex.yy.c"
+
+static void lex_error(const char *msg) {
+    error_at(yylineno, msg, yytext, (int)yyleng);
+}
+
+static void fa_print(const char *name, const FA *fa) {
+    fprintf(faf, "Automaton %s: initial state %s, final states", name, fa->initial);
+    for (int i = 0; i < fa->nf; i++) fprintf(faf, " %s", fa->finals[i]);
+    fprintf(faf, "\n");
+    for (int i = 0; i < fa->nt; i++)
+        fprintf(faf, "    %s --%s--> %s\n", fa->t[i].from, fa->t[i].sym, fa->t[i].to);
+}
+
+/* One line of the trace: the automaton, the lexeme, the states it went through
+ * (repeated states are written as "q1 x3") and the result. */
+static void fa_log(int line, const char *fa_name, const char *text, int n,
+                   const char **path, const char *result) {
+    char shown[40];
+    if (n > 30) snprintf(shown, sizeof shown, "%.27s...", text);
+    else        snprintf(shown, sizeof shown, "%.*s", n, text);
+    fprintf(faf, "line %-3d  %-10s %-32s %s", line, fa_name, shown, path[0]);
+    for (int i = 1; i <= n; ) {
+        int j = i;
+        while (j + 1 <= n && strcmp(path[j + 1], path[i]) == 0) j++;
+        fprintf(faf, " -> %s", path[i]);
+        if (j > i) fprintf(faf, " x%d", j - i + 1);
+        i = j + 1;
+    }
+    fprintf(faf, "   %s\n", result);
+}
+
+static void fa_token(void);
+#line 672 "lex.yy.c"
+#line 673 "lex.yy.c"
 
 #define INITIAL 0
 
@@ -645,6 +729,8 @@ extern int yywrap ( void );
 #endif
 
 #ifndef YY_NO_UNPUT
+    
+    static void yyunput ( int c, char *buf_ptr  );
     
 #endif
 
@@ -800,10 +886,10 @@ YY_DECL
 		}
 
 	{
-#line 110 "lexer.l"
+#line 200 "lexer.l"
 
 
-#line 807 "lex.yy.c"
+#line 893 "lex.yy.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -830,13 +916,13 @@ yy_match:
 			while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 				{
 				yy_current_state = (int) yy_def[yy_current_state];
-				if ( yy_current_state >= 28 )
+				if ( yy_current_state >= 18 )
 					yy_c = yy_meta[yy_c];
 				}
 			yy_current_state = yy_nxt[yy_base[yy_current_state] + yy_c];
 			++yy_cp;
 			}
-		while ( yy_base[yy_current_state] != 45 );
+		while ( yy_base[yy_current_state] != 21 );
 
 yy_find_action:
 		yy_act = yy_accept[yy_current_state];
@@ -873,72 +959,41 @@ do_action:	/* This label is used only to access EOF actions. */
 case 1:
 /* rule 1 can match eol */
 YY_RULE_SETUP
-#line 112 "lexer.l"
+#line 202 "lexer.l"
 { /* whitespace: ignored */ }
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 113 "lexer.l"
+#line 203 "lexer.l"
 { /* comment: ignored */ }
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 115 "lexer.l"
-{
-                                    int c = token_code(yytext);
-                                    if (c >= 0)
-                                        pif_add(yytext, c, -1, -1);        /* reserved word */
-                                    else
-                                        add_symbol("id", CODE_ID, ST_ID);  /* identifier */
-                                  }
+#line 205 "lexer.l"
+{ fa_token(); }
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 123 "lexer.l"
-{ add_symbol("const", CODE_CONST, ST_NUMBER); }
-	YY_BREAK
-case 5:
-YY_RULE_SETUP
-#line 124 "lexer.l"
-{ add_symbol("const", CODE_CONST, ST_STRING); }
-	YY_BREAK
-case 6:
-YY_RULE_SETUP
-#line 126 "lexer.l"
+#line 207 "lexer.l"
 {
                                     int c = token_code(yytext);
                                     if (c >= 0)
-                                        pif_add(yytext, c, -1, -1);        /* operator / separator */
+                                        pif_add(yytext, c, -1, -1);
                                     else
                                         lex_error("symbol not in the token list:");
                                   }
 	YY_BREAK
-case 7:
+case 5:
 YY_RULE_SETUP
-#line 134 "lexer.l"
-{ lex_error("identifier cannot start with a digit:"); }
-	YY_BREAK
-case 8:
-YY_RULE_SETUP
-#line 135 "lexer.l"
-{ lex_error("number cannot have leading zeros:"); }
-	YY_BREAK
-case 9:
-YY_RULE_SETUP
-#line 136 "lexer.l"
-{ lex_error("unterminated string:"); }
-	YY_BREAK
-case 10:
-YY_RULE_SETUP
-#line 137 "lexer.l"
+#line 215 "lexer.l"
 { lex_error("invalid character:"); }
 	YY_BREAK
-case 11:
+case 6:
 YY_RULE_SETUP
-#line 139 "lexer.l"
+#line 217 "lexer.l"
 ECHO;
 	YY_BREAK
-#line 942 "lex.yy.c"
+#line 997 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1235,7 +1290,7 @@ static int yy_get_next_buffer (void)
 		while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 			{
 			yy_current_state = (int) yy_def[yy_current_state];
-			if ( yy_current_state >= 28 )
+			if ( yy_current_state >= 18 )
 				yy_c = yy_meta[yy_c];
 			}
 		yy_current_state = yy_nxt[yy_base[yy_current_state] + yy_c];
@@ -1263,16 +1318,57 @@ static int yy_get_next_buffer (void)
 	while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 		{
 		yy_current_state = (int) yy_def[yy_current_state];
-		if ( yy_current_state >= 28 )
+		if ( yy_current_state >= 18 )
 			yy_c = yy_meta[yy_c];
 		}
 	yy_current_state = yy_nxt[yy_base[yy_current_state] + yy_c];
-	yy_is_jam = (yy_current_state == 27);
+	yy_is_jam = (yy_current_state == 17);
 
 		return yy_is_jam ? 0 : yy_current_state;
 }
 
 #ifndef YY_NO_UNPUT
+
+    static void yyunput (int c, char * yy_bp )
+{
+	char *yy_cp;
+    
+    yy_cp = (yy_c_buf_p);
+
+	/* undo effects of setting up yytext */
+	*yy_cp = (yy_hold_char);
+
+	if ( yy_cp < YY_CURRENT_BUFFER_LVALUE->yy_ch_buf + 2 )
+		{ /* need to shift things up to make room */
+		/* +2 for EOB chars. */
+		int number_to_move = (yy_n_chars) + 2;
+		char *dest = &YY_CURRENT_BUFFER_LVALUE->yy_ch_buf[
+					YY_CURRENT_BUFFER_LVALUE->yy_buf_size + 2];
+		char *source =
+				&YY_CURRENT_BUFFER_LVALUE->yy_ch_buf[number_to_move];
+
+		while ( source > YY_CURRENT_BUFFER_LVALUE->yy_ch_buf )
+			*--dest = *--source;
+
+		yy_cp += (int) (dest - source);
+		yy_bp += (int) (dest - source);
+		YY_CURRENT_BUFFER_LVALUE->yy_n_chars =
+			(yy_n_chars) = (int) YY_CURRENT_BUFFER_LVALUE->yy_buf_size;
+
+		if ( yy_cp < YY_CURRENT_BUFFER_LVALUE->yy_ch_buf + 2 )
+			YY_FATAL_ERROR( "flex scanner push-back overflow" );
+		}
+
+	*--yy_cp = (char) c;
+
+    if ( c == '\n' ){
+        --yylineno;
+    }
+
+	(yytext_ptr) = yy_bp;
+	(yy_hold_char) = *yy_cp;
+	(yy_c_buf_p) = yy_cp;
+}
 
 #endif
 
@@ -1914,20 +2010,95 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 139 "lexer.l"
+#line 217 "lexer.l"
 
+
+/* Called when a token starts with a letter, a digit or a double quote.
+ * The matching automaton (identifier, number or string) is run on the input,
+ * character by character, and the longest accepted lexeme is kept. */
+static void fa_token(void) {
+    char buf[4096];
+    const char *path[sizeof buf + 1];
+    int len = 0, last = 0;
+    int c = (unsigned char)yytext[0];
+    int line = yylineno;
+    const FA *fa = isalpha(c) ? &fa_id : isdigit(c) ? &fa_num : &fa_str;
+    const char *fa_name = (fa == &fa_id) ? "identifier" : (fa == &fa_num) ? "number" : "string";
+    const char *state = fa->initial;
+    path[0] = state;
+
+    for (;;) {
+        const char *next = next_state(fa, state, (char)c);
+        if (!next || len == (int)sizeof buf - 1) break;
+        state = next;
+        buf[len++] = (char)c;
+        path[len] = state;
+        if (is_final(fa, state)) last = len;
+        c = input();
+        if (c <= 0) {
+            c = 0;
+            break;
+        }
+    }
+
+    if (len == 0) {
+        error_at(line, "invalid character:", yytext, 1);
+        return;
+    }
+
+    /* give back what was read but is not part of the longest accepted lexeme */
+    int used = last ? last : len;
+    if (c) unput(c);
+    for (int i = len - 1; i >= used; i--)
+        unput(buf[i]);
+    buf[used] = '\0';
+
+    if (fa == &fa_id) {
+        int code = token_code(buf);
+        char result[64];
+        if (code >= 0) {
+            snprintf(result, sizeof result, "accepted -> reserved word (code %d)", code);
+            pif_add(buf, code, -1, -1);
+        } else {
+            snprintf(result, sizeof result, "accepted -> identifier");
+            add_symbol("id", CODE_ID, ST_ID, buf);
+        }
+        fa_log(line, fa_name, buf, used, path, result);
+    } else if (fa == &fa_num) {
+        int next = input();
+        if (next > 0) unput(next); else next = 0;
+        int bad_word = (isalpha(next) || next == '_');
+        int bad_zero = (buf[0] == '0' && isdigit(next));
+        fa_log(line, fa_name, buf, used, path,
+               (bad_word || bad_zero) ? "accepted prefix, then lexical error"
+                                      : "accepted -> number constant");
+        if (bad_word || bad_zero) {
+            while ((c = input()) > 0 && used < (int)sizeof buf - 1 &&
+                   (bad_word ? (isalnum(c) || c == '_') : isdigit(c)))
+                buf[used++] = (char)c;
+            if (c > 0) unput(c);
+            error_at(line, bad_word ? "identifier cannot start with a digit:"
+                                    : "number cannot have leading zeros:", buf, used);
+        } else {
+            add_symbol("const", CODE_CONST, ST_NUMBER, buf);
+        }
+    } else if (last == 0) {
+        fa_log(line, fa_name, buf, used, path, "rejected (no final state reached) -> unterminated string");
+        error_at(line, "unterminated string:", buf, used);
+    } else {
+        fa_log(line, fa_name, buf, used, path, "accepted -> string constant");
+        add_symbol("const", CODE_CONST, ST_STRING, buf);
+    }
+}
 
 int main(int argc, char **argv) {
     if (argc < 2) {
-        fprintf(stderr, "usage: %s <source.meow> [tokens.in]\n", argv[0]);
+        fprintf(stderr, "usage: %s <source.meow>\n", argv[0]);
         return 1;
     }
-    const char *token_path = (argc > 2) ? argv[2] : "tokens.in";
-
-    if (load_tokens(token_path) < 0) {
-        perror(token_path);
+    if (load_tokens("tokens.in") < 0 || read_fa("fa_identifier.in", &fa_id) < 0 ||
+        read_fa("fa_number.in", &fa_num) < 0 || read_fa("fa_string.in", &fa_str) < 0)
         return 1;
-    }
 
     yyin = fopen(argv[1], "r");
     if (!yyin) {
@@ -1937,14 +2108,30 @@ int main(int argc, char **argv) {
 
     st_init(&st);
     errf = fopen("errors.out", "w");
-    if (!errf) { perror("errors.out"); return 1; }
+    if (!errf) {
+        perror("errors.out");
+        return 1;
+    }
+
+    faf = fopen("fa.out", "w");
+    if (!faf) {
+        perror("fa.out");
+        return 1;
+    }
+    fa_print("identifier", &fa_id);
+    fa_print("number", &fa_num);
+    fa_print("string", &fa_str);
+    fprintf(faf, "\n");
 
     yylex();
     fclose(yyin);
 
     FILE *pf = fopen("pif.out", "w");
     FILE *sf = fopen("st.out", "w");
-    if (!pf || !sf) { perror("output files"); return 1; }
+    if (!pf || !sf) {
+        perror("output files");
+        return 1;
+    }
 
     fprintf(pf, "%-6s %-12s %s\n", "code", "token", "ST position");
     for (int i = 0; i < pif_len; i++) {
@@ -1956,23 +2143,15 @@ int main(int argc, char **argv) {
     }
     st_print(&st, sf);
 
-    if (error_count == 0)
-        fprintf(errf, "No lexical errors.\n");
-    else
-        fprintf(errf, "%d lexical error(s).\n", error_count);
-
-    printf("%s (tokens from %s: %d): %d PIF entries, %d ST symbols, %d lexical error(s)\n",
-           argv[1], token_path, tok_len, pif_len, st.count, error_count);
+    fprintf(errf, error_count ? "%d lexical error(s).\n" : "No lexical errors.\n", error_count);
+    printf("%s: %d PIF entries, %d ST symbols, %d lexical error(s)\n",
+           argv[1], pif_len, st.count, error_count);
 
     fclose(pf);
     fclose(sf);
     fclose(errf);
-    for (int i = 0; i < pif_len; i++)
-        free(pif[i].token);
+    fclose(faf);
     free(pif);
-    for (int i = 0; i < tok_len; i++)
-        free(tokens[i].text);
-    free(tokens);
     st_free(&st);
     return error_count ? 2 : 0;
 }
