@@ -1,0 +1,208 @@
+1. factor -> NUMBER
+2. term -> factor
+3. arith -> term
+4. arith_list -> arith
+5. factor -> NUMBER
+6. term -> factor
+7. arith -> term
+8. arith_list -> arith_list , arith
+9. factor -> NUMBER
+10. term -> factor
+11. arith -> term
+12. arith_list -> arith_list , arith
+13. factor -> NUMBER
+14. term -> factor
+15. arith -> term
+16. arith_list -> arith_list , arith
+17. list_literal -> [ arith_list ]
+18. list_decl -> friend ID = list_literal ;
+19. statement -> list_decl
+20. stmt_list -> statement
+21. factor -> NUMBER
+22. term -> factor
+23. arith -> term
+24. arith_list -> arith
+25. factor -> NUMBER
+26. term -> factor
+27. arith -> term
+28. arith_list -> arith_list , arith
+29. factor -> NUMBER
+30. term -> factor
+31. arith -> term
+32. arith_list -> arith_list , arith
+33. factor -> NUMBER
+34. term -> factor
+35. arith -> term
+36. arith_list -> arith_list , arith
+37. list_literal -> [ arith_list ]
+38. list_decl -> friend ID = list_literal ;
+39. statement -> list_decl
+40. stmt_list -> stmt_list statement
+41. num_decl -> treats ID ;
+42. statement -> num_decl
+43. stmt_list -> stmt_list statement
+44. out_item -> STRING
+45. out_list -> out_item
+46. output_stmt -> meow out_list ;
+47. statement -> output_stmt
+48. stmt_list -> stmt_list statement
+49. ref -> ID
+50. input_stmt -> adopt ref ;
+51. statement -> input_stmt
+52. stmt_list -> stmt_list statement
+53. factor -> NUMBER
+54. term -> factor
+55. arith -> term
+56. add_stmt -> paw ID arith ;
+57. statement -> add_stmt
+58. stmt_list -> stmt_list statement
+59. factor -> NUMBER
+60. term -> factor
+61. arith -> term
+62. add_stmt -> paw ID arith ;
+63. statement -> add_stmt
+64. stmt_list -> stmt_list statement
+65. unique_stmt -> baby ID ;
+66. statement -> unique_stmt
+67. stmt_list -> stmt_list statement
+68. order -> down
+69. sort_stmt -> purr ID order ;
+70. statement -> sort_stmt
+71. stmt_list -> stmt_list statement
+72. out_item -> STRING
+73. out_list -> out_item
+74. output_stmt -> meow out_list ;
+75. statement -> output_stmt
+76. stmt_list -> stmt_list statement
+77. join_stmt -> zoomies ID STRING ;
+78. statement -> join_stmt
+79. stmt_list -> stmt_list statement
+80. ref -> ID
+81. factor -> ref
+82. term -> factor
+83. arith -> term
+84. comp_op -> <
+85. factor -> NUMBER
+86. term -> factor
+87. arith -> term
+88. comparison -> arith comp_op arith
+89. not_cond -> comparison
+90. and_cond -> not_cond
+91. ref -> ID
+92. factor -> ref
+93. term -> factor
+94. arith -> term
+95. comp_op -> >
+96. factor -> NUMBER
+97. term -> factor
+98. arith -> term
+99. comparison -> arith comp_op arith
+100. not_cond -> comparison
+101. and_cond -> and_cond and not_cond
+102. cond -> and_cond
+103. ref -> ID
+104. ref -> ID
+105. factor -> ref
+106. term -> factor
+107. arith -> term
+108. factor -> NUMBER
+109. term -> factor
+110. arith -> arith - term
+111. assign -> ref = arith ;
+112. statement -> assign
+113. stmt_list -> statement
+114. out_item -> STRING
+115. out_list -> out_item
+116. ref -> ID
+117. factor -> ref
+118. term -> factor
+119. arith -> term
+120. out_item -> arith
+121. out_list -> out_list , out_item
+122. out_item -> STRING
+123. out_list -> out_list , out_item
+124. output_stmt -> meow out_list ;
+125. statement -> output_stmt
+126. stmt_list -> stmt_list statement
+127. out_item -> STRING
+128. out_list -> out_item
+129. ref -> ID
+130. factor -> ref
+131. term -> factor
+132. arith -> term
+133. out_item -> arith
+134. out_list -> out_list , out_item
+135. output_stmt -> meow out_list ;
+136. statement -> output_stmt
+137. stmt_list -> stmt_list statement
+138. block -> { stmt_list }
+139. out_item -> STRING
+140. out_list -> out_item
+141. output_stmt -> meow out_list ;
+142. statement -> output_stmt
+143. stmt_list -> statement
+144. block -> { stmt_list }
+145. if_stmt -> sniff cond block hiss block
+146. statement -> if_stmt
+147. stmt_list -> statement
+148. block -> { stmt_list }
+149. for_stmt -> biscuits ID made ID block
+150. statement -> for_stmt
+151. stmt_list -> stmt_list statement
+152. ref -> ID
+153. factor -> ref
+154. term -> factor
+155. arith -> term
+156. comp_op -> ==
+157. factor -> NUMBER
+158. term -> factor
+159. arith -> term
+160. comparison -> arith comp_op arith
+161. not_cond -> comparison
+162. and_cond -> not_cond
+163. cond -> and_cond
+164. out_item -> STRING
+165. out_list -> out_item
+166. output_stmt -> meow out_list ;
+167. statement -> output_stmt
+168. stmt_list -> statement
+169. block -> { stmt_list }
+170. if_stmt -> sniff cond block
+171. statement -> if_stmt
+172. stmt_list -> stmt_list statement
+173. ref -> ID
+174. factor -> ref
+175. term -> factor
+176. arith -> term
+177. factor -> NUMBER
+178. term -> factor
+179. arith -> arith + term
+180. map_stmt -> cuddle ID ID => arith ;
+181. statement -> map_stmt
+182. stmt_list -> stmt_list statement
+183. ref -> ID
+184. factor -> ref
+185. term -> factor
+186. arith -> term
+187. comp_op -> <
+188. factor -> NUMBER
+189. term -> factor
+190. arith -> term
+191. comparison -> arith comp_op arith
+192. not_cond -> comparison
+193. and_cond -> not_cond
+194. cond -> and_cond
+195. filter_stmt -> scratch ID ID => cond ;
+196. statement -> filter_stmt
+197. stmt_list -> stmt_list statement
+198. out_item -> STRING
+199. out_list -> out_item
+200. factor -> chunky ( ID )
+201. term -> factor
+202. arith -> term
+203. out_item -> arith
+204. out_list -> out_list , out_item
+205. output_stmt -> meow out_list ;
+206. statement -> output_stmt
+207. stmt_list -> stmt_list statement
+208. program -> stmt_list

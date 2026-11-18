@@ -1,0 +1,3 @@
+friend a = [1, 2];
+sniff chunky(a) > 1 {
+    meow "big";
