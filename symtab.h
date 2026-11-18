@@ -3,10 +3,6 @@
 
 #include <stdio.h>
 
-/* Symbol table: hash table with separate chaining.
- * Holds identifiers and constants (numbers and strings).
- * A position is the pair (bucket, index in that bucket's chain). */
-
 #define ST_SIZE 31
 
 typedef enum { ST_ID, ST_NUMBER, ST_STRING } StType;
@@ -18,7 +14,7 @@ typedef struct StEntry {
 } StEntry;
 
 typedef struct {
-    int bucket;   /* -1 means "not found" */
+    int bucket;
     int index;
 } StPos;
 

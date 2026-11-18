@@ -6,6 +6,9 @@
 #include <string.h>
 #include <ctype.h>
 #include "symtab.h"
+#include "parser.tab.h"
+
+#define YY_DECL int scan_source(void)
 
 #define LEN        64
 #define MAX        128
@@ -194,7 +197,29 @@ static void fa_log(int line, const char *fa_name, const char *text, int n,
     fprintf(faf, "   %s\n", result);
 }
 
-static void fa_token(void);
+static const struct { const char *text; int tok; } ttab[] = {
+    {"friend", FRIEND}, {"treats", TREATS}, {"adopt", ADOPT}, {"paw", PAW},
+    {"cuddle", CUDDLE}, {"scratch", SCRATCH}, {"purr", PURR}, {"baby", BABY},
+    {"zoomies", ZOOMIES}, {"meow", MEOW}, {"sniff", SNIFF}, {"hiss", HISS},
+    {"biscuits", BISCUITS}, {"made", MADE}, {"up", UP}, {"down", DOWN},
+    {"chunky", CHUNKY}, {"and", AND}, {"or", OR}, {"not", NOT},
+    {"+", PLUS}, {"-", MINUS}, {"*", TIMES}, {"/", DIV}, {"%", MOD},
+    {"==", EQ}, {"!=", NE}, {"<", LT}, {"<=", LE}, {">", GT}, {">=", GE},
+    {"=", ASSIGN}, {"=>", ARROW},
+    {"(", LPAREN}, {")", RPAREN}, {"[", LBRACKET}, {"]", RBRACKET},
+    {"{", LBRACE}, {"}", RBRACE}, {";", SEMI}, {",", COMMA}
+};
+
+/* The parser token for a reserved word, operator or separator. */
+static int token_id(const char *text) {
+    for (size_t i = 0; i < sizeof ttab / sizeof ttab[0]; i++)
+        if (strcmp(ttab[i].text, text) == 0) return ttab[i].tok;
+    return UNKNOWN;
+}
+
+static int from_pif;
+
+static int fa_token(void);
 %}
 
 %%
@@ -202,14 +227,15 @@ static void fa_token(void);
 [ \t\r\n]+                        { /* whitespace: ignored */ }
 "//".*                            { /* comment: ignored */ }
 
-[A-Za-z0-9\"]                     { fa_token(); }
+[A-Za-z0-9\"]                     { int t = fa_token(); if (t) return t; }
 
 [=!<>]=|"=>"|[=<>+\-*/%()\[\]{};,]   {
                                     int c = token_code(yytext);
-                                    if (c >= 0)
+                                    if (c >= 0) {
                                         pif_add(yytext, c, -1, -1);
-                                    else
-                                        lex_error("symbol not in the token list:");
+                                        return token_id(yytext);
+                                    }
+                                    lex_error("symbol not in the token list:");
                                   }
 
 .                                 { lex_error("invalid character:"); }
@@ -219,7 +245,7 @@ static void fa_token(void);
 /* Called when a token starts with a letter, a digit or a double quote.
  * The matching automaton (identifier, number or string) is run on the input,
  * character by character, and the longest accepted lexeme is kept. */
-static void fa_token(void) {
+static int fa_token(void) {
     char buf[4096];
     const char *path[sizeof buf + 1];
     int len = 0, last = 0;
@@ -246,7 +272,7 @@ static void fa_token(void) {
 
     if (len == 0) {
         error_at(line, "invalid character:", yytext, 1);
-        return;
+        return 0;
     }
 
     /* give back what was read but is not part of the longest accepted lexeme */
@@ -256,15 +282,18 @@ static void fa_token(void) {
         unput(buf[i]);
     buf[used] = '\0';
 
+    int ret = 0;
     if (fa == &fa_id) {
         int code = token_code(buf);
         char result[64];
         if (code >= 0) {
             snprintf(result, sizeof result, "accepted -> reserved word (code %d)", code);
             pif_add(buf, code, -1, -1);
+            ret = token_id(buf);
         } else {
             snprintf(result, sizeof result, "accepted -> identifier");
             add_symbol("id", CODE_ID, ST_ID, buf);
+            ret = ID;
         }
         fa_log(line, fa_name, buf, used, path, result);
     } else if (fa == &fa_num) {
@@ -284,6 +313,7 @@ static void fa_token(void) {
                                     : "number cannot have leading zeros:", buf, used);
         } else {
             add_symbol("const", CODE_CONST, ST_NUMBER, buf);
+            ret = NUMBER;
         }
     } else if (last == 0) {
         fa_log(line, fa_name, buf, used, path, "rejected (no final state reached) -> unterminated string");
@@ -291,70 +321,144 @@ static void fa_token(void) {
     } else {
         fa_log(line, fa_name, buf, used, path, "accepted -> string constant");
         add_symbol("const", CODE_CONST, ST_STRING, buf);
+        ret = STRING;
     }
+    return ret;
 }
 
+/* ---------- Parsing from a PIF file (instead of scanning the source) ---------- */
+typedef struct { char pos[LEN]; char type[LEN]; } StInfo;
+
+static StInfo stinfo[2048];
+static int nstinfo;
+static FILE *pff;
+static int pif_tokens;
+
+/* Reads st.out: the type (number / string / identifier) of every ST position. */
+static int load_st_types(const char *path) {
+    FILE *f = fopen(path, "r");
+    if (!f) {
+        perror(path);
+        return -1;
+    }
+    char line[1024];
+    fgets(line, sizeof line, f);
+    while (fgets(line, sizeof line, f) && nstinfo < 2048)
+        if (sscanf(line, "%63s %63s", stinfo[nstinfo].pos, stinfo[nstinfo].type) == 2)
+            nstinfo++;
+    fclose(f);
+    return 0;
+}
+
+/* The next parser token, read from the PIF line "code token position". */
+static int read_pif_token(void) {
+    char line[256], token[LEN], pos[LEN];
+    int code;
+    while (fgets(line, sizeof line, pff)) {
+        if (sscanf(line, "%d %63s %63s", &code, token, pos) != 3) continue;
+        pif_tokens++;
+        if (strcmp(token, "id") == 0) return ID;
+        if (strcmp(token, "const") == 0) {
+            for (int i = 0; i < nstinfo; i++)
+                if (strcmp(stinfo[i].pos, pos) == 0)
+                    return strcmp(stinfo[i].type, "string") == 0 ? STRING : NUMBER;
+            return NUMBER;
+        }
+        return token_id(token);
+    }
+    return 0;
+}
+
+/* The function the parser calls: the scanner, or the PIF reader. */
+int yylex(void) {
+    return from_pif ? read_pif_token() : scan_source();
+}
+
+void report_syntax_error(const char *msg) {
+    if (from_pif)
+        fprintf(stderr, "Syntax error at token %d of the PIF: %s\n", pif_tokens, msg);
+    else
+        fprintf(stderr, "Syntax error at line %d: %s\n", yylineno, msg);
+}
+
+extern FILE *prodf;
+extern int nprod;
+
 int main(int argc, char **argv) {
-    if (argc < 2) {
-        fprintf(stderr, "usage: %s <source.meow>\n", argv[0]);
-        return 1;
-    }
-    if (load_tokens("tokens.in") < 0 || read_fa("fa_identifier.in", &fa_id) < 0 ||
-        read_fa("fa_number.in", &fa_num) < 0 || read_fa("fa_string.in", &fa_str) < 0)
-        return 1;
-
-    yyin = fopen(argv[1], "r");
-    if (!yyin) {
-        perror(argv[1]);
+    from_pif = (argc == 4 && strcmp(argv[1], "--pif") == 0);
+    if (!from_pif && argc != 2) {
+        fprintf(stderr, "usage: %s <source.meow>\n       %s --pif <pif.out> <st.out>\n",
+                argv[0], argv[0]);
         return 1;
     }
 
-    st_init(&st);
-    errf = fopen("errors.out", "w");
-    if (!errf) {
-        perror("errors.out");
+    prodf = fopen("productions.out", "w");
+    if (!prodf) {
+        perror("productions.out");
         return 1;
     }
 
-    faf = fopen("fa.out", "w");
-    if (!faf) {
-        perror("fa.out");
-        return 1;
+    if (from_pif) {
+        pff = fopen(argv[2], "r");
+        if (!pff) {
+            perror(argv[2]);
+            return 1;
+        }
+        if (load_st_types(argv[3]) < 0) return 1;
+    } else {
+        if (load_tokens("tokens.in") < 0 || read_fa("fa_identifier.in", &fa_id) < 0 ||
+            read_fa("fa_number.in", &fa_num) < 0 || read_fa("fa_string.in", &fa_str) < 0)
+            return 1;
+        yyin = fopen(argv[1], "r");
+        if (!yyin) {
+            perror(argv[1]);
+            return 1;
+        }
+        st_init(&st);
+        errf = fopen("errors.out", "w");
+        faf = fopen("fa.out", "w");
+        if (!errf || !faf) {
+            perror("output files");
+            return 1;
+        }
+        fa_print("identifier", &fa_id);
+        fa_print("number", &fa_num);
+        fa_print("string", &fa_str);
+        fprintf(faf, "\n");
     }
-    fa_print("identifier", &fa_id);
-    fa_print("number", &fa_num);
-    fa_print("string", &fa_str);
-    fprintf(faf, "\n");
 
-    yylex();
-    fclose(yyin);
+    int status = yyparse();
 
-    FILE *pf = fopen("pif.out", "w");
-    FILE *sf = fopen("st.out", "w");
-    if (!pf || !sf) {
-        perror("output files");
-        return 1;
+    if (!from_pif) {
+        FILE *pf = fopen("pif.out", "w");
+        FILE *sf = fopen("st.out", "w");
+        if (!pf || !sf) {
+            perror("output files");
+            return 1;
+        }
+        fprintf(pf, "%-6s %-12s %s\n", "code", "token", "ST position");
+        for (int i = 0; i < pif_len; i++) {
+            if (pif[i].bucket < 0)
+                fprintf(pf, "%-6d %-12s %s\n", pif[i].code, pif[i].token, "-");
+            else
+                fprintf(pf, "%-6d %-12s %d:%d\n", pif[i].code, pif[i].token,
+                        pif[i].bucket, pif[i].index);
+        }
+        st_print(&st, sf);
+        fprintf(errf, error_count ? "%d lexical error(s).\n" : "No lexical errors.\n", error_count);
+        fclose(pf);
+        fclose(sf);
+        fclose(errf);
+        fclose(faf);
+        fclose(yyin);
     }
+    fclose(prodf);
 
-    fprintf(pf, "%-6s %-12s %s\n", "code", "token", "ST position");
-    for (int i = 0; i < pif_len; i++) {
-        if (pif[i].bucket < 0)
-            fprintf(pf, "%-6d %-12s %s\n", pif[i].code, pif[i].token, "-");
-        else
-            fprintf(pf, "%-6d %-12s %d:%d\n", pif[i].code, pif[i].token,
-                    pif[i].bucket, pif[i].index);
-    }
-    st_print(&st, sf);
-
-    fprintf(errf, error_count ? "%d lexical error(s).\n" : "No lexical errors.\n", error_count);
-    printf("%s: %d PIF entries, %d ST symbols, %d lexical error(s)\n",
-           argv[1], pif_len, st.count, error_count);
-
-    fclose(pf);
-    fclose(sf);
-    fclose(errf);
-    fclose(faf);
-    free(pif);
-    st_free(&st);
-    return error_count ? 2 : 0;
+    if (status == 0)
+        printf("%s: parsing OK, %d productions applied (see productions.out)\n",
+               from_pif ? argv[2] : argv[1], nprod);
+    else
+        printf("%s: parsing FAILED (syntax error), %d productions applied before the error\n",
+               from_pif ? argv[2] : argv[1], nprod);
+    return status ? 3 : (error_count ? 2 : 0);
 }

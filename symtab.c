@@ -26,7 +26,6 @@ void st_init(SymTab *st) {
     st->count = 0;
 }
 
-/* polynomial hash: h = h * 31 + c, reduced modulo the table size */
 unsigned st_hash(const char *text) {
     unsigned long h = 0;
     for (const char *p = text; *p; p++)
@@ -34,7 +33,6 @@ unsigned st_hash(const char *text) {
     return (unsigned)(h % ST_SIZE);
 }
 
-/* Returns the position of text; inserts it at the end of its chain if absent. */
 StPos st_insert(SymTab *st, const char *text, StType type) {
     StPos pos;
     pos.bucket = (int)st_hash(text);
@@ -66,7 +64,6 @@ StPos st_insert(SymTab *st, const char *text, StType type) {
     return pos;
 }
 
-/* Returns the position of text, or bucket = -1 if it is not in the table. */
 StPos st_lookup(const SymTab *st, const char *text) {
     StPos pos;
     pos.bucket = (int)st_hash(text);
